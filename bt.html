@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<style>
+    small{
+        color: red;
+    }
+    .container{
+        height: 200px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="input-form">
+            <input onkeyup="validateUsername()" type="text" class="input-data form-control" id="userName" placeholder="Enter username" >
+            <small id="usernameError"></small>
+        </div>
+        <div class="input-form">
+            <input onkeyup="validatePassword()" type="password" class="input-data form-control" id="password" placeholder="Enter password" >
+            <small id="passwordError"></small>
+        </div>
+
+        <div class="input-form">
+            <button onclick="return validateForm()" type="submit" class="input-data btn btn-danger"  id="from-two">Submit</button>
+            <small id="passwordError"></small>
+        </div>
+    </div>
+
+    <script>
+        function validateUsername(){
+            var status=true;
+            var userName=document.getElementById("userName").value;
+            var userNameError=document.getElementById("usernameError");
+            if(userName.length == 0){
+             status=false;
+             userNameError.innerHTML = "UserName is Required";
+            }
+            else{
+                userNameError.innerHTML = "";
+               
+            }
+            return status;
+
+        }
+        function validatePassword(){
+
+            var status =true;
+            var password=document.getElementById("password").value;
+            var passwordError=document.getElementById("passwordError");
+            if( password.length==0){
+                status = false;
+                passwordError.innerHTML="Password is Required";
+            }
+            else if(password.length<6 || password.length>10){
+                status=false;
+             passwordError.innerHTML="password Length should be 6 to 10"
+            } 
+            else{
+                status=true;
+                passwordError.innerHTML = "";
+                
+            }
+            return status;
+        }
+
+        function validateForm(){
+            var usernameStatus=validateUsername();
+            var passwordStatus=validatePassword();
+            if(usernameStatus && passwordStatus)
+            return true;
+            return false;
+        }
+    </script>
+
+</body>
+</html>
